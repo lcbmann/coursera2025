@@ -1,12 +1,21 @@
-name: example-environment
+name: coursera2025
 channels:
   - conda-forge
 dependencies:
-  - python
+  - python=3.11
   - numpy
+  - scipy
+  - matplotlib
+  - pillow
+  - ipython
+  - ipykernel
+  - notebook
+  - jupyterlab
+  - nbconvert
+  - nbclient
+  - nbformat
+  - ipywidgets
+  - widgetsnbextension
   - pip
   - pip:
-    - nbgitpuller
-    - sphinx-gallery
-    - pandas
-    - matplotlib
+      - nbgitpuller
