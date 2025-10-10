@@ -4,12 +4,19 @@ channels:
 dependencies:
   - python=3.11
   - numpy
+  - scipy
   - matplotlib
+  - pillow
   - ipython
   - ipykernel
   - notebook
+  - jupyterlab
   - nbconvert
   - nbclient
+  - nbformat
+  - ipywidgets
+  - widgetsnbextension
+
   - pip
   - pip:
       - nbgitpuller
