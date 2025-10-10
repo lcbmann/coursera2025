@@ -16,6 +16,7 @@ dependencies:
   - nbformat
   - ipywidgets
   - widgetsnbextension
+
   - pip
   - pip:
       - nbgitpuller
