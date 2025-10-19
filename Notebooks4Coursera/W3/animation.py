@@ -7,6 +7,8 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
 
+
+
 def create_animation_gaussian_analytical(local_dict):
     fig, ax1 = local_dict['fig'], local_dict['ax1']
     leg1, leg2, leg3, leg4, up1, up21, up22 = local_dict['leg1'], local_dict['leg2'], local_dict['leg3'], local_dict['leg4'], local_dict['up1'], local_dict['up21'], local_dict['up22']
@@ -41,7 +43,7 @@ def create_animation_gaussian_analytical(local_dict):
 
         up1.set_ydata(p)
         up21.set_ydata(seis)
-        up22.set_data(time[it], seis[it])
+        up22.set_data([time[it]], [seis[it]])
         
         animation_progress_handler(n)
 

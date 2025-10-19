@@ -1,0 +1,8 @@
+2025-02-14
+- Updated environment.yml to provide a minimal Binder/local environment with Python 3.10, core scientific stack, and nbgitpuller so notebooks can run consistently.
+- Converted problematic matplotlib strings in Notebooks4Coursera/W2/W2_P1.ipynb to use raw literals, preventing invalid escape sequence warnings for LaTeX symbols.
+- Patched Notebooks4Coursera/W3/animation.py and Notebooks4Coursera/W4/animation.py so single-point markers are passed as sequences, stopping runtime errors in Gaussian and homogeneous FD animations.
+2025-02-15
+- Restored notebook animation display calls to ani.to_jshtml() after earlier HTML5 attempts and ensured marker updates use proper sequences to keep matplotlib happy across Gaussian/FD demos.
+2025-02-16
+- Removed the temporary Animation.to_jshtml monkey-patch so animations use the native Matplotlib behavior again and re-serialized affected notebooks to clean up the JSON structure that previously tripped Binder's loader.
