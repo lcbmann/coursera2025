@@ -1,0 +1,7 @@
+2025-02-14
+- Updated environment.yml to provide a minimal Binder/local environment with Python 3.10, core scientific stack, and nbgitpuller so notebooks can run consistently.
+- Converted problematic matplotlib strings in Notebooks4Coursera/W2/W2_P1.ipynb to use raw literals, preventing invalid escape sequence warnings for LaTeX symbols.
+- Patched Notebooks4Coursera/W3/animation.py and Notebooks4Coursera/W4/animation.py so single-point markers are passed as sequences, stopping runtime errors in Gaussian and homogeneous FD animations.
+- Replaced ani.to_jshtml() usage with ani.to_html5_video() in affected notebooks (W3–W9) to avoid "IPython is not defined" JavaScript errors in Binder/JupyterLab.
+2025-02-15
+- Restored all notebook animation display calls to ani.to_jshtml() and monkey-patched matplotlib's Animation.to_jshtml to proxy to HTML5 video when available, eliminating the corrupted-notebook load error while keeping Binder-compatible animation embeds.

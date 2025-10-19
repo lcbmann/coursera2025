@@ -1,12 +1,13 @@
-name: example-environment
+name: coursera-geophysics
 channels:
   - conda-forge
 dependencies:
-  - python
+  - python=3.10
   - numpy
+  - matplotlib
+  - ipython
+  - ipykernel
+  - notebook
   - pip
   - pip:
-    - nbgitpuller
-    - sphinx-gallery
-    - pandas
-    - matplotlib
+      - nbgitpuller

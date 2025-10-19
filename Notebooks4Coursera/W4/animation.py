@@ -6,6 +6,21 @@ import math
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
+from matplotlib.animation import Animation as _BaseAnimation
+
+if getattr(_BaseAnimation, "_coursera_original_to_jshtml", None) is None:
+    _BaseAnimation._coursera_original_to_jshtml = _BaseAnimation.to_jshtml
+
+    def _coursera_to_jshtml(self, fps=None, embed_frames=True, default_mode='loop'):
+        try:
+            return self.to_html5_video()
+        except Exception:  # pragma: no cover - fall back if HTML5 export fails
+            return _BaseAnimation._coursera_original_to_jshtml(self, fps=fps, embed_frames=embed_frames, default_mode=default_mode)
+
+    _BaseAnimation.to_jshtml = _coursera_to_jshtml
+
+
+
 def create_animation_staggered(local_dict):
     fig = local_dict['fig']
     ax1 = local_dict['ax1']
@@ -172,7 +187,7 @@ def create_animation_homogeneous(local_dict):
         it = n * idisp
         
         up41.set_ydata(seis_results[n])
-        up42.set_data(time[it], seis_results[n][it])
+        up42.set_data([time[it]], [seis_results[n][it]])
         
         ax3.set_title('Time Step (nt) = %d' % it)
         ax3.imshow(p_results[n], vmin=-lim, vmax=+lim, interpolation="nearest", cmap=plt.cm.RdBu)
