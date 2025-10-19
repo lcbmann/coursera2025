@@ -6,3 +6,7 @@
 - Restored notebook animation display calls to ani.to_jshtml() after earlier HTML5 attempts and ensured marker updates use proper sequences to keep matplotlib happy across Gaussian/FD demos.
 2025-02-16
 - Removed the temporary Animation.to_jshtml monkey-patch so animations use the native Matplotlib behavior again and re-serialized affected notebooks to clean up the JSON structure that previously tripped Binder's loader.
+2025-10-19
+- Reinstated HTML5 video embeds (ani.to_html5_video()) across animation notebooks to match the earlier playback ap
+  proach while preserving the single-point marker fixes that stop matplotlib RuntimeErrors.
+
