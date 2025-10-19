@@ -6,6 +6,8 @@ import math
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
+
+
 def create_animation_se_hetero_1d_solution(local_dict):
     fig1 = local_dict['fig1']
     ax1 = local_dict['ax1']
