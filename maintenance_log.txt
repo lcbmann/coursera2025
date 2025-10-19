@@ -1,0 +1,18 @@
+Notebook Maintenance Log
+========================
+
+2025-10-10 (UTC) - Automated Review
+- Updated W2/W2_P1 derivative plots to use raw Matplotlib strings for LaTeX text so Python no longer emits invalid escape warnings.
+- Added a raw-string ylabel in W5/W5_ps_cheby_derivative_solution to avoid invalid escape warnings for $\partial_x f(x)$.
+- Patched W3/animation.py to supply one-point sequences to the marker update in create_animation_gaussian_analytical, preventing "x must be a sequence" errors during HTML animation export.
+- Attempted to install runtime dependencies inside the CI container, but outbound package downloads are blocked by the execution environment's proxy (documented for debugging).
+
+2025-10-10 (UTC) - Inline backend fixes
+- Switched the Week 5, Week 6, and Week 8 setup cells from Matplotlib's nbagg backend to the inline backend to remove the "IPython is not defined" JavaScript errors in Binder.
+- Added matplotlib-inline to environment.yml so Binder pulls in the inline backend helper explicitly.
+- Reconfirmed that the execution container cannot reach external package indexes, so notebook execution still needs to be verified in Binder after rebuild.
+
+2025-10-10 (UTC) - Animation HTML hardening
+- Replaced Matplotlib's default JS-based animation HTML export with a GIF-based fallback in every week-specific animation.py helper so Binder viewers no longer depend on the global IPython JS object.
+- Cleared old nbagg JavaScript outputs from W5/W5_ps_cheby_derivative_solution.ipynb and W8/W8_se_numerical_integration_GLL.ipynb so notebooks open without immediately throwing front-end errors.
+- Reminder: the sandbox proxy still blocks dependency installs, so interactive notebook tests must run in Binder/MyBinder once the new environment is built.
