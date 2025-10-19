@@ -5,6 +5,7 @@ import math
 
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
+import types
 
 def create_animation_fe_elastic_1d_solution(local_dict):
     fig1 = local_dict['fig1']
@@ -41,4 +42,12 @@ def create_animation_fe_elastic_1d_solution(local_dict):
         
         return l1, l2 
 
-    return animation.FuncAnimation(fig1, update, math.ceil(nt/idisp), fargs=(line1, line2, ), interval=50)
+    return _wrap_animation_with_html5(animation.FuncAnimation(fig1, update, math.ceil(nt/idisp), fargs=(line1, line2, ), interval=50)
+
+def _wrap_animation_with_html5(ani):
+    import types
+    def _to_jshtml(self, *args, **kwargs):
+        return animation.Animation.to_html5_video(self)
+    ani.to_jshtml = types.MethodType(_to_jshtml, ani)
+    return ani
+

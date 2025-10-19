@@ -5,6 +5,7 @@ import math
 
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
+import types
 
 
 def create_animation_gaussian_analytical(local_dict):
@@ -41,13 +42,13 @@ def create_animation_gaussian_analytical(local_dict):
 
         up1.set_ydata(p)
         up21.set_ydata(seis)
-        up22.set_data(time[it], seis[it])
+        up22.set_data([time[it]], [seis[it]])
         
         animation_progress_handler(n)
 
         return leg1, leg2, leg3, leg4, up1, up21, up22
 
-    return animation.FuncAnimation(fig, update, math.ceil(nt/idisp), fargs=(leg1, leg2, leg3, leg4, up1, up21, up22), interval=50)
+    return _wrap_animation_with_html5(animation.FuncAnimation(fig, update, math.ceil(nt/idisp), fargs=(leg1, leg2, leg3, leg4, up1, up21, up22), interval=50)
     
 
 def create_animation_gaussian(local_dict):
@@ -85,4 +86,12 @@ def create_animation_gaussian(local_dict):
 
         return leg, up
 
-    return animation.FuncAnimation(fig, update, math.ceil(nt/idisp), fargs=(leg1, up31), interval=50)
+    return _wrap_animation_with_html5(animation.FuncAnimation(fig, update, math.ceil(nt/idisp), fargs=(leg1, up31), interval=50)
+
+def _wrap_animation_with_html5(ani):
+    import types
+    def _to_jshtml(self, *args, **kwargs):
+        return animation.Animation.to_html5_video(self)
+    ani.to_jshtml = types.MethodType(_to_jshtml, ani)
+    return ani
+

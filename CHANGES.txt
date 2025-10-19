@@ -1,0 +1,4 @@
+2024-05-21
+- Align environment.yml with the minimal Binder/local stack (Python 3.10 plus notebook essentials and nbgitpuller) so every learner runs the same supported toolchain.
+- Override each animation helper to return HTML5 video from to_jshtml() and feed single-sample sequences into marker updates, preventing Matplotlib runtime errors in W3/W4 notebooks.
+- Mark latex-rich plotting strings in W2_P1.ipynb as raw literals to silence the invalid escape warnings without changing the rendered math.

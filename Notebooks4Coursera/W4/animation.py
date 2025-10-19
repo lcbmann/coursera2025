@@ -5,6 +5,7 @@ import math
 
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
+import types
 
 def create_animation_staggered(local_dict):
     fig = local_dict['fig']
@@ -75,7 +76,7 @@ def create_animation_staggered(local_dict):
         
         return l1, l2
 
-    return animation.FuncAnimation(fig, update, math.ceil(nt/idisp), fargs=(line1, line2), interval=50)
+    return _wrap_animation_with_html5(animation.FuncAnimation(fig, update, math.ceil(nt/idisp), fargs=(line1, line2), interval=50)
     
 def create_animation_optimal_operator(local_dict):
     fig = local_dict['fig']
@@ -123,7 +124,7 @@ def create_animation_optimal_operator(local_dict):
         
         return up31, up32, up33, up34
 
-    return animation.FuncAnimation(fig, update, math.ceil(nt/idisp), fargs=(up31, up32, up33, up34), interval=50)
+    return _wrap_animation_with_html5(animation.FuncAnimation(fig, update, math.ceil(nt/idisp), fargs=(up31, up32, up33, up34), interval=50)
 
 
 def create_animation_heterogeneous(local_dict):
@@ -148,7 +149,7 @@ def create_animation_heterogeneous(local_dict):
         
         return im_wave
 
-    return animation.FuncAnimation(fig, update, math.ceil(nt/idisp), fargs=(im_wave, ), interval=50)
+    return _wrap_animation_with_html5(animation.FuncAnimation(fig, update, math.ceil(nt/idisp), fargs=(im_wave, ), interval=50)
 
 
 def create_animation_homogeneous(local_dict):
@@ -172,7 +173,7 @@ def create_animation_homogeneous(local_dict):
         it = n * idisp
         
         up41.set_ydata(seis_results[n])
-        up42.set_data(time[it], seis_results[n][it])
+        up42.set_data([time[it]], [seis_results[n][it]])
         
         ax3.set_title('Time Step (nt) = %d' % it)
         ax3.imshow(p_results[n], vmin=-lim, vmax=+lim, interpolation="nearest", cmap=plt.cm.RdBu)
@@ -181,7 +182,7 @@ def create_animation_homogeneous(local_dict):
         
         return up41, up42
 
-    return animation.FuncAnimation(fig2, update, math.ceil(nt/idisp), fargs=(up41, up42), interval=50)
+    return _wrap_animation_with_html5(animation.FuncAnimation(fig2, update, math.ceil(nt/idisp), fargs=(up41, up42), interval=50)
 
 
 def create_animation_advection_1d_euler_scheme(local_dict):
@@ -204,7 +205,7 @@ def create_animation_advection_1d_euler_scheme(local_dict):
                 
         return line,
     
-    return animation.FuncAnimation(fig1, update, math.ceil(nt/idisp), fargs=(line1, ), interval=50)
+    return _wrap_animation_with_html5(animation.FuncAnimation(fig1, update, math.ceil(nt/idisp), fargs=(line1, ), interval=50)
 
 
 def create_animation_advection_1d_predictor_corrector_scheme(local_dict):
@@ -227,7 +228,7 @@ def create_animation_advection_1d_predictor_corrector_scheme(local_dict):
 
         return line,
     
-    return animation.FuncAnimation(fig2, update, math.ceil(nt/idisp), fargs=(line2, ), interval=50)
+    return _wrap_animation_with_html5(animation.FuncAnimation(fig2, update, math.ceil(nt/idisp), fargs=(line2, ), interval=50)
 
 def create_animation_advection_1d_mccormack_scheme(local_dict):
     unew_results = local_dict['unew_results']
@@ -249,7 +250,7 @@ def create_animation_advection_1d_mccormack_scheme(local_dict):
         
         return line,
     
-    return animation.FuncAnimation(fig3, update, math.ceil(nt/idisp), fargs=(line3, ), interval=50)
+    return _wrap_animation_with_html5(animation.FuncAnimation(fig3, update, math.ceil(nt/idisp), fargs=(line3, ), interval=50)
 
 def create_animation_advection_1d_lax_wendroff_scheme(local_dict):
     unew_results = local_dict['unew_results']
@@ -271,4 +272,12 @@ def create_animation_advection_1d_lax_wendroff_scheme(local_dict):
         
         return line,
     
-    return animation.FuncAnimation(fig4, update, math.ceil(nt/idisp), fargs=(line4, ), interval=50)
+    return _wrap_animation_with_html5(animation.FuncAnimation(fig4, update, math.ceil(nt/idisp), fargs=(line4, ), interval=50)
+
+def _wrap_animation_with_html5(ani):
+    import types
+    def _to_jshtml(self, *args, **kwargs):
+        return animation.Animation.to_html5_video(self)
+    ani.to_jshtml = types.MethodType(_to_jshtml, ani)
+    return ani
+
