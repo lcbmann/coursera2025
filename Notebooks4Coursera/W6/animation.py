@@ -6,19 +6,6 @@ import math
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
-from matplotlib.animation import Animation as _BaseAnimation
-
-if getattr(_BaseAnimation, "_coursera_original_to_jshtml", None) is None:
-    _BaseAnimation._coursera_original_to_jshtml = _BaseAnimation.to_jshtml
-
-    def _coursera_to_jshtml(self, fps=None, embed_frames=True, default_mode='loop'):
-        try:
-            return self.to_html5_video()
-        except Exception:  # pragma: no cover - fall back if HTML5 export fails
-            return _BaseAnimation._coursera_original_to_jshtml(self, fps=fps, embed_frames=embed_frames, default_mode=default_mode)
-
-    _BaseAnimation.to_jshtml = _coursera_to_jshtml
-
 
 
 def create_animation_fe_static_elasticity(local_dict):
