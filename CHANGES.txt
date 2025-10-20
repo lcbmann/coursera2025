@@ -44,3 +44,9 @@ Details
 - How: Use the computed names df_num and df_ana in plotting.
 - Notebooks updated:
   - Notebooks4Coursera/W5/W5_ps_cheby_derivative_solution.ipynb (plotting cell)
+
+5) Minimal import fixes for Fourier acoustic 1D notebook
+- What: Runtime NameErrors due to missing imports for ricker, ProgressBarHandler, math, and display/HTML used later in the notebook.
+- How: Added the following to the first configuration cell so later cells run without modification: `import math`, `from IPython.display import display, HTML`, `from ricker import ricker`, `from progress_bar import ProgressBarHandler`.
+- Notebook updated:
+  - Notebooks4Coursera/W5/W5_ps_fourier_acoustic_1d.ipynb (first code cell)
