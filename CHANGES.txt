@@ -1,0 +1,32 @@
+Changes in this fork (2025-10-20)
+
+Summary
+- Fix Matplotlib animation marker updates to pass sequences, not scalars, to Line2D.set_data.
+- Silence Python 3.12/3.13 SyntaxWarning from invalid escape sequences in TeX-like math strings by using raw strings.
+
+Details
+1) Animation set_data sequence fix
+- What: Matplotlib Line2D.set_data expects sequences (x, y). Some helpers passed scalars like time[it] and seis[it].
+- Why: This can raise runtime errors or produce inconsistent behavior across backends.
+- How: Wrap scalar values in single-element lists.
+- Files changed:
+  - Notebooks4Coursera/W3/animation.py: up22.set_data([time[it]], [seis[it]])
+  - Notebooks4Coursera/W4/animation.py: up42.set_data([time[it]], [seis_results[n][it]])
+
+2) TeX-like label/title raw string fix
+- What: Strings with backslashes (e.g. "\\lambda") in plt.title/xlabel/ylabel produced SyntaxWarning on newer Python.
+- Why: Python interprets sequences like "\\l" as invalid escapes before mathtext parses them.
+- How: Prefix such strings with r'' so backslashes are preserved, or double the backslashes where appropriate.
+- Notebooks updated (code cells only):
+  - Notebooks4Coursera/W2/W2_P1.ipynb
+    * Several titles/labels using $n_\\lambda$ and n/\\lambda made raw strings.
+  - Notebooks4Coursera/W5/W5_ps_cheby_derivative_solution.ipynb
+    * y-label using \\partial_x made a raw string.
+  - Notebooks4Coursera/W9/W9_se_homo_1d_solution.ipynb
+    * Titles for Mass and Stiffness matrix now use raw strings.
+  - Notebooks4Coursera/W9/W9_se_hetero_1d_solution.ipynb
+    * Titles for Mass and Stiffness matrix now use raw strings.
+
+Notes
+- Edits were minimal and localized to the problematic strings and animation marker updates. No other logic or metadata was modified.
+- If further warnings appear for other TeX-like strings, apply the same r'' prefix rule.
