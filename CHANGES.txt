@@ -62,3 +62,15 @@ Details
 - How: Added `import math`, `from IPython.display import display, HTML`, and `from progress_bar import ProgressBarHandler` to the first configuration cell.
 - Notebook updated:
   - Notebooks4Coursera/W6/W6_fe_static_elasticity.ipynb (first code cell)
+
+8) Matplotlib redundant color argument fix
+- What: A plot specified both a format string with color ('k-') and a color keyword, triggering a redundancy warning.
+- How: Use only the keyword with a neutral fmt ('-') for the interpolating function.
+- Notebook updated:
+  - Notebooks4Coursera/W8/W8_se_Lagrange_interpolation_simple.ipynb (plotting cell)
+
+9) Minimal import fixes for W8 numerical integration (GLL)
+- What: NameErrors for missing `gll` and `lagrange2` functions used in the notebook.
+- How: Added `from gll import gll` and `from lagrange2 import lagrange2` to the first configuration cell.
+- Notebook updated:
+  - Notebooks4Coursera/W8/W8_se_numerical_integration_GLL.ipynb (first code cell)
