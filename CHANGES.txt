@@ -36,6 +36,9 @@ Details
   - Notebooks4Coursera/W9/W9_se_homo_1d_solution.ipynb
   - Notebooks4Coursera/W9/W9_se_hetero_1d_solution.ipynb
 
+- Additionally corrected a mixed raw+double-escape mathtext label in:
+  - Notebooks4Coursera/W5/W5_ps_cheby_derivative_solution.ipynb (ylabel changed to r'$\partial_x f(x)$')
+
 4) Derivative variable name consistency
 - What: Plotting cells referenced df_numeric/df_analytic, while earlier cells defined df_num/df_ana, causing NameError.
 - How: Use the computed names df_num and df_ana in plotting.
