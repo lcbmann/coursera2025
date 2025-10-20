@@ -6,6 +6,8 @@ import math
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
+
+
 def create_animation_cheby_elastic(local_dict):
     fig = local_dict['fig']
     ax = local_dict['ax']

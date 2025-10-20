@@ -6,6 +6,8 @@ import math
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
+
+
 def create_animation_staggered(local_dict):
     fig = local_dict['fig']
     ax1 = local_dict['ax1']
