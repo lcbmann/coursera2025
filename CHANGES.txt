@@ -30,3 +30,24 @@ Details
 Notes
 - Edits were minimal and localized to the problematic strings and animation marker updates. No other logic or metadata was modified.
 - If further warnings appear for other TeX-like strings, apply the same r'' prefix rule.
+
+3) Derivative variable name consistency
+- What: Plotting cells referenced df_numeric/df_analytic, while earlier cells defined df_num/df_ana, causing NameError.
+- Why: Inconsistent variable names between computation and plotting.
+- How: Use the computed names df_num and df_ana in plotting; no other changes made.
+- Notebooks updated:
+  - Notebooks4Coursera/W5/W5_ps_cheby_derivative_solution.ipynb (plotting cell)
+
+4) JupyterLab-safe Matplotlib backend
+- What: Several notebooks set matplotlib.use("nbagg"), which depends on the classic Notebook frontend and a global IPython JS object. In JupyterLab/Binder this causes "IPython is not defined".
+- Why: nbAgg backend isn’t compatible with JupyterLab’s frontend JS loading.
+- How: Removed nbAgg usage and set a Lab-safe backend matplotlib.use("Agg") in the first config cell. This supports static plots and embedding animations via to_jshtml without nbagg.
+- Notebooks updated (first configuration cell):
+  - Notebooks4Coursera/W5/W5_ps_cheby_derivative_solution.ipynb
+  - Notebooks4Coursera/W5/W5_ps_fourier_acoustic_1d.ipynb
+  - Notebooks4Coursera/W5/W5_ps_fourier_acoustic_2d.ipynb
+  - Notebooks4Coursera/W6/W6_fe_static_elasticity.ipynb
+  - Notebooks4Coursera/W7/W7_fe_elastic_1d_solution.ipynb
+  - Notebooks4Coursera/W8/W8_se_numerical_integration_GLL.ipynb
+  - Notebooks4Coursera/W9/W9_se_hetero_1d_solution.ipynb
+  - Notebooks4Coursera/W9/W9_se_homo_1d_solution.ipynb
