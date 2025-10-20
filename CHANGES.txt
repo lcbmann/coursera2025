@@ -74,3 +74,15 @@ Details
 - How: Added `from gll import gll` and `from lagrange2 import lagrange2` to the first configuration cell.
 - Notebook updated:
   - Notebooks4Coursera/W8/W8_se_numerical_integration_GLL.ipynb (first code cell)
+
+10) Minimal import fixes for W9 SEM homogeneous 1D
+- What: NameErrors for missing utilities used later (math.ceil, display/HTML, progress bar, Ricker source, GLL points, Lagrange 1st derivative).
+- How: Added `import math`, `from IPython.display import display, HTML`, `from progress_bar import ProgressBarHandler`, `from ricker import ricker`, `from gll import gll`, and `from lagrange1st import lagrange1st` to the first configuration cell.
+- Notebook updated:
+  - Notebooks4Coursera/W9/W9_se_homo_1d_solution.ipynb (first code cell)
+
+11) Minimal import fixes for W9 SEM heterogeneous 1D
+- What: Same class of NameErrors as homogeneous case for required helpers.
+- How: Added the same imports to the first configuration cell.
+- Notebook updated:
+  - Notebooks4Coursera/W9/W9_se_hetero_1d_solution.ipynb (first code cell)
