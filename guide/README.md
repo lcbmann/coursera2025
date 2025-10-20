@@ -57,7 +57,7 @@
 
 4. **Convert to HTML Player**:  
    ```python
-   display(HTML(ani.to_jshtml()))
+   display(HTML(ani.to_html5_video()))
    ```
 
 ---

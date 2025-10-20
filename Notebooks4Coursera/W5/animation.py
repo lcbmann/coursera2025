@@ -5,7 +5,6 @@ import math
 
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-import types
 
 def create_animation_cheby_elastic(local_dict):
     fig = local_dict['fig']
@@ -28,7 +27,7 @@ def create_animation_cheby_elastic(local_dict):
         
         return l, 
 
-    return _wrap_animation_with_html5(animation.FuncAnimation(fig, update, math.ceil(nt/idisp), fargs=(line, ), interval=50)
+    return animation.FuncAnimation(fig, update, math.ceil(nt/idisp), fargs=(line, ), interval=50)
 
 
 def create_animation_fourier_acoustic_1d(local_dict):
@@ -74,7 +73,7 @@ def create_animation_fourier_acoustic_1d(local_dict):
         
         return l1, l2, l3
         
-    return _wrap_animation_with_html5(animation.FuncAnimation(fig, update, math.ceil(nt/idisp), fargs=(l1, l2, l3), interval=50)
+    return animation.FuncAnimation(fig, update, math.ceil(nt/idisp), fargs=(l1, l2, l3), interval=50)
 
 
 def create_animation_fourier_acoustic_2d(local_dict):
@@ -107,12 +106,5 @@ def create_animation_fourier_acoustic_2d(local_dict):
         
         return (l1, l2)
 
-    return _wrap_animation_with_html5(animation.FuncAnimation(fig, update, math.ceil(nt/idisp), fargs=(l1, l2), interval=50)
-
-def _wrap_animation_with_html5(ani):
-    import types
-    def _to_jshtml(self, *args, **kwargs):
-        return animation.Animation.to_html5_video(self)
-    ani.to_jshtml = types.MethodType(_to_jshtml, ani)
-    return ani
-
+    return animation.FuncAnimation(fig, update, math.ceil(nt/idisp), fargs=(l1, l2), interval=50)
+    

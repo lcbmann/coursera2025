@@ -1,4 +1,5 @@
-2024-05-21
-- Align environment.yml with the minimal Binder/local stack (Python 3.10 plus notebook essentials and nbgitpuller) so every learner runs the same supported toolchain.
-- Override each animation helper to return HTML5 video from to_jshtml() and feed single-sample sequences into marker updates, preventing Matplotlib runtime errors in W3/W4 notebooks.
-- Mark latex-rich plotting strings in W2_P1.ipynb as raw literals to silence the invalid escape warnings without changing the rendered math.
+2024-04-08
+- Updated environment.yml to the minimal coursera-geophysics environment suitable for Binder and local runs.
+- Wrapped single-sample animation markers in W3 and W4 helpers with sequences so Matplotlib accepts them during HTML export.
+- Swapped notebook animation embeds to use ani.to_html5_video() everywhere to avoid frontend "IPython is not defined" errors.
+- Marked LaTeX-rich matplotlib labels in W2_P1 as raw strings to suppress invalid escape warnings.
