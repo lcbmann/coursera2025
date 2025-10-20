@@ -86,3 +86,10 @@ Details
 - How: Added the same imports to the first configuration cell.
 - Notebook updated:
   - Notebooks4Coursera/W9/W9_se_hetero_1d_solution.ipynb (first code cell)
+
+12) W9 SEM: define sizes and assemble matrices before use, and ensure ani is created before display
+- What: M/K/Minv/gn not defined early caused plot/time-loop errors; ani created after display caused NameError.
+- How: Inserted an assembly cell after setup to define `ng`, allocate and assemble `M`, `K`, compute `Minv`, and set `J`, `Ji`, `W`. Also added explicit creation of `ani` before `display(HTML(...))` in display cells.
+- Notebooks updated:
+  - Notebooks4Coursera/W9/W9_se_homo_1d_solution.ipynb (assembly cell after setup; create ani before display)
+  - Notebooks4Coursera/W9/W9_se_hetero_1d_solution.ipynb (assembly cell after setup; create ani before display)
