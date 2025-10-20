@@ -93,3 +93,10 @@ Details
 - Notebooks updated:
   - Notebooks4Coursera/W9/W9_se_homo_1d_solution.ipynb (assembly cell after setup; create ani before display)
   - Notebooks4Coursera/W9/W9_se_hetero_1d_solution.ipynb (assembly cell after setup; create ani before display)
+
+13) W9: mass/stiffness title mathtext and hetero assembly ordering guard
+- What: Mass/Stiffness plot titles had over-escaped mathtext; hetero assembly could run before vs/rho became arrays causing TypeError.
+- How: Standardized titles to r'Mass Matrix $\mathbf{M}$' and r'Stiffness Matrix $\mathbf{K}$'. Added guards at the top of the hetero assembly cell to expand scalar vs/rho to arrays and recompute mu.
+- Notebooks updated:
+  - Notebooks4Coursera/W9/W9_se_homo_1d_solution.ipynb (titles)
+  - Notebooks4Coursera/W9/W9_se_hetero_1d_solution.ipynb (titles; assembly guards)
