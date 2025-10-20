@@ -50,3 +50,9 @@ Details
 - How: Added the following to the first configuration cell so later cells run without modification: `import math`, `from IPython.display import display, HTML`, `from ricker import ricker`, `from progress_bar import ProgressBarHandler`.
 - Notebook updated:
   - Notebooks4Coursera/W5/W5_ps_fourier_acoustic_1d.ipynb (first code cell)
+
+6) Minimal import fixes for Fourier acoustic 2D notebook
+- What: Same runtime NameErrors in the 2D notebook (missing ricker, ProgressBarHandler, math, and display/HTML).
+- How: Added the same imports to the first configuration cell so later cells run without modification.
+- Notebook updated:
+  - Notebooks4Coursera/W5/W5_ps_fourier_acoustic_2d.ipynb (first code cell)
