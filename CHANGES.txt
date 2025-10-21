@@ -112,3 +112,10 @@ Details
 - How: Remove the earlier pre-LVZ assembly cell and insert a new assembly cell after the low-velocity zone setup. Recompute mu from the updated vs/rho and then assemble M/K. Minv is now mass-lumped as in item 14.
 - Notebook updated:
   - Notebooks4Coursera/W9/W9_se_hetero_1d_solution.ipynb (delete early assembly; insert assembly after LVZ)
+
+16) W9 SEM: correct stiffness operator orientation (L D L^T)
+- What: K was assembled using (L^T D L), which transposes the operator and injects spurious high-frequency content.
+- How: Build K using the elemental form K_e = (Ji**2) * J * (l1d @ (W @ mu_e) @ l1d.T) for the heterogeneous case and K_e = (mu * (Ji**2) * J) * (l1d @ W @ l1d.T) for the homogeneous case.
+- Notebooks updated:
+  - Notebooks4Coursera/W9/W9_se_hetero_1d_solution.ipynb (assembly cell)
+  - Notebooks4Coursera/W9/W9_se_homo_1d_solution.ipynb (assembly cell)
