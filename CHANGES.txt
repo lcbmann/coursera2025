@@ -99,3 +99,16 @@ Details
 - How: Added guards at the top of the assembly cell to expand scalar vs/rho to arrays and recompute mu.
 - Notebook updated:
   - Notebooks4Coursera/W9/W9_se_hetero_1d_solution.ipynb (assembly guards)
+
+14) W9 SEM: use mass-lumped (diagonal) inverse for Minv
+- What: Time extrapolation originally used a full matrix inverse Minv = inv(M), which is inconsistent with the intended mass-lumped scheme and slower/numerically less robust.
+- How: Replace Minv with the diagonal inverse Minv = diag(1.0 / diag(M)).
+- Notebooks updated:
+  - Notebooks4Coursera/W9/W9_se_homo_1d_solution.ipynb (assembly cell)
+  - Notebooks4Coursera/W9/W9_se_hetero_1d_solution.ipynb (assembly cell)
+
+15) W9 SEM (heterogeneous): assemble after low-velocity model and remove pre-LVZ assembly
+- What: M/K were assembled before applying the low-velocity zone, so matrices didn’t reflect the final model.
+- How: Remove the earlier pre-LVZ assembly cell and insert a new assembly cell after the low-velocity zone setup. Recompute mu from the updated vs/rho and then assemble M/K. Minv is now mass-lumped as in item 14.
+- Notebook updated:
+  - Notebooks4Coursera/W9/W9_se_hetero_1d_solution.ipynb (delete early assembly; insert assembly after LVZ)
